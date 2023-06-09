@@ -5,8 +5,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import { wrap } from "@popmotion/popcorn"
 import'../../styles/ImageCarousel.scss'
 import { IMAGES } from "./Images"
-import {MagneticButton} from "@/app/components/MagneticButton/MagneticButton";
-import {ArrowRightIcon} from "@heroicons/react/24/solid";
 
 const sliderVariants = {
 	incoming: direction => ({
@@ -102,13 +100,6 @@ export const ImageCarousel = () => {
 					</div>
 				))}
 			</div>
-
-			{/*<div className={'absolute top-[25vh] left-[10%]'}>*/}
-			{/*	<MagneticButton*/}
-			{/*		Icon={ <ArrowRightIcon className={'w-10 h-10'}/> }*/}
-			{/*		link={'/about'}*/}
-			{/*	/>*/}
-			{/*</div>*/}
 		</main>
 	)
 }
