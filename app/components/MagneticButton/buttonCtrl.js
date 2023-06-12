@@ -3,15 +3,23 @@ import { EventEmitter } from 'events';
 import { lerp, getMousePos, calcWinsize, distance, getRandomFloat } from '@/app/utils/utils.js';
 
 // body color
-const bodyColor = getComputedStyle(document.body).getPropertyValue('--color-bg');
+let bodyColor;
+
+if (typeof window !== 'undefined') {
+    bodyColor = getComputedStyle(document.body).getPropertyValue('--color-bg');
+}
 
 // Calculate the viewport size
 let winsize = calcWinsize();
-window.addEventListener('resize', () => winsize = calcWinsize());
+if (typeof window !== 'undefined') {
+    window.addEventListener('resize', () => winsize = calcWinsize());
+}
 
 // Track the mouse position
 let mousepos = {x: 0, y: 0};
-window.addEventListener('mousemove', ev => mousepos = getMousePos(ev));
+if (typeof window !== 'undefined') {
+    window.addEventListener('mousemove', ev => mousepos = getMousePos(ev));
+}
 
 export default class ButtonCtrl extends EventEmitter {
     constructor(el) {
