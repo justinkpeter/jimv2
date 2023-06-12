@@ -1,6 +1,6 @@
 import { gsap } from 'gsap';
 import { EventEmitter } from 'events';
-import { lerp, getMousePos, calcWinsize, distance, getRandomFloat } from '@/app/utils/utils.js';
+import { lerp, getMousePos, calcWinsize, distance } from '@/app/utils/utils.js';
 
 // body color
 let bodyColor;
