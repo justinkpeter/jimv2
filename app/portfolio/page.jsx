@@ -8,38 +8,20 @@ import {useEffect, useRef} from "react";
 import gsap from 'gsap'
 import {motion} from "framer-motion";
 import {CAPTIONS} from "@/app/portfolio/captions";
-import dynamic from 'next/dynamic';
-import LocomotiveScroll from "locomotive-scroll";
-// import {ScrollWrapper} from "@/wrappers/ScrollWrapper";
-
+import { LocomotiveScrollProvider, useLocomotiveScroll } from 'react-locomotive-scroll'
 
 export default function Page() {
 
 	const gallery = useRecoilValue(galleryState)
+	const containerRef = useRef(null)
 	// const LocomotiveScroll = dynamic(() => import('locomotive-scroll'), { ssr: false });
 
+	const { scroll } = useLocomotiveScroll();
 
 	useEffect(() => {
 
-		if (typeof window !== 'undefined' && document.querySelector && gsap.utils) {
-			const scroll = new LocomotiveScroll({
-				el: document.querySelector('[data-scroll-container]'), // Provide a valid DOM element here
-				smooth: true,
-				direction: 'horizontal',
-				smartphone: {
-					breakpoint: 0,
-					smooth: true,
-					direction: 'horizontal',
-				},
-				tablet: {
-					breakpoint: 0,
-					smooth: true,
-					direction: 'horizontal',
-				},
-			});
-
+		if (typeof window !== undefined && containerRef.current) {
 			const progressBar = document?.querySelector('.progress-bar');
-			console.log(scroll)
 
 			if (progressBar) {
 				scroll.on('scroll', (obj) => {
@@ -53,11 +35,26 @@ export default function Page() {
 		}
 	}, []);
 
+	const options = {
+		smooth: true,
+		direction: 'horizontal',
+		smartphone: {
+			breakpoint: 0,
+			smooth: true,
+			direction: 'horizontal',
+		},
+		tablet: {
+			breakpoint: 0,
+			smooth: true,
+			direction: 'horizontal',
+		},
+	}
 
 
 	return(
 		<>
-			<main data-scroll-container className={'bg-[#747066] h-screen relative uppercase'}>
+			<LocomotiveScrollProvider options={options} containerRef={containerRef} watch={[]}>
+				<main data-scroll-container className={'bg-[#747066] h-screen relative uppercase'} ref={containerRef}>
 				<motion.h1
 					layoutId={"title"}
 					className={'absolute w-[90vw] h-fit left-[8.5vw] xl:left-[9.5vw] top-[40%] flex items-center justify-center uppercase font-semibold text-[6.25vw] xl:text-[5.5vw] 2xl:text-[5vw] z-10 '}>
@@ -120,6 +117,7 @@ export default function Page() {
 					/>
 				</div>
 			</main>
+			</LocomotiveScrollProvider>
 			<div className={'fixed flex justify-center h-1 w-screen bottom-[10vh] z-50'}>
 				<div className={'w-[10vw] h-1 bg-white/30 rounded-lg'}>
 					<div className={'progress-bar bg-white h-full rounded-lg w-1/4'}/>
