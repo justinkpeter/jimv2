@@ -11,7 +11,7 @@ export function Sidebar() {
 							</div>
 						</div>
 						<div className={'h-1/6 flex flex-col justify-center items-center'}>
-							<img className={'w-[10vw] h-[10vw] rounded-full object-cover'} src={'/assets/img/logo.png'}/>
+							<img className={'w-[10vw] h-[10vw] rounded-full object-cover'} src={'/assets/img/logo.png'} alt={'logo'}/>
 						</div>
 					</div>
 				</div>
