@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { wrap } from "@popmotion/popcorn"
 import'../../styles/ImageCarousel.scss'
 import { IMAGES } from "./Images"
+import { useRecoilState } from "recoil";
+import { galleryState, carouselState} from "@/app/atoms/selectedGallery";
 
 const sliderVariants = {
 	incoming: direction => ({
@@ -27,6 +29,8 @@ const sliderTransition = {
 
 export const ImageCarousel = () => {
 	const [[imageCount, direction], setImageCount] = useState([0, 0])
+	const [gallery, setGallery] = useRecoilState(galleryState)
+	const [carouselIndex, setCarouselIndex] = useRecoilState(carouselState)
 
 	const activeImageIndex = wrap(0, IMAGES.length, imageCount)
 
@@ -45,6 +49,10 @@ export const ImageCarousel = () => {
 	}
 
 	const skipToImage = imageId => {
+		//update selected gallery
+		setGallery(imageId)
+		setCarouselIndex(imageId)
+
 		let changeDirection
 		if (imageId > activeImageIndex) {
 			changeDirection = 1
@@ -60,9 +68,10 @@ export const ImageCarousel = () => {
 				<div className="slider">
 					<AnimatePresence initial={false} custom={direction}>
 						<motion.div
+							layoutId="header"
 							key={imageCount}
 							style={{
-								backgroundImage: `url(${IMAGES[activeImageIndex].imageSrc})`
+								backgroundImage: `url(${IMAGES[carouselIndex !== 0 ? carouselIndex : activeImageIndex].imageSrc})`
 							}}
 							custom={direction}
 							variants={sliderVariants}
