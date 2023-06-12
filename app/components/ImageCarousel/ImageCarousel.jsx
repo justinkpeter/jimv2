@@ -100,7 +100,7 @@ export const ImageCarousel = () => {
 						onClick={() => skipToImage(image.id)}
 						className="thumbnail-container"
 					>
-						<img src={image.imageSrc} alt="Musician" />
+						<img src={image.imageSrc} alt="gallery" />
 						<div
 							className={`active-indicator ${
 								image.id === activeImageIndex ? "active" : null
