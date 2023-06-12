@@ -5,7 +5,10 @@ const map = (x, a, b, c, d) => (x - a) * (d - c) / (b - a) + c;
 const lerp = (a, b, n) => (1 - n) * a + n * b;
 
 const calcWinsize = () => {
-    return {width: window.innerWidth, height: window.innerHeight};
+    if (typeof window !== 'undefined') {
+        return { width: window.innerWidth, height: window.innerHeight };
+    }
+    return { width: 0, height: 0 };
 };
 
 // Gets the mouse position
