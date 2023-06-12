@@ -13,6 +13,7 @@ import { LocomotiveScrollProvider, useLocomotiveScroll } from 'react-locomotive-
 export default function Page() {
 
 	const gallery = useRecoilValue(galleryState)
+	const scrollRef = useRef(null);
 	const containerRef = useRef(null)
 	// const LocomotiveScroll = dynamic(() => import('locomotive-scroll'), { ssr: false });
 
@@ -20,7 +21,7 @@ export default function Page() {
 
 	useEffect(() => {
 
-		if (typeof window !== undefined && containerRef.current) {
+		if (typeof window !== undefined && scrollRef.current) {
 			const progressBar = document?.querySelector('.progress-bar');
 
 			if (progressBar) {
