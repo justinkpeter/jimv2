@@ -1,7 +1,8 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import  RecoilRootWrapper from '@/wrappers/RecoilRootWrapper'
+import { Sidebar } from "@/app/components/Sidebar";
+import {FramerSharedLayoutWrapper} from "@/wrappers/FramerSharedLayoutWrapper";
+import {SocialLinks} from "@/app/components/SocialLinks";
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +12,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={'font-clash text-white'}>
+      <Sidebar/>
+      <SocialLinks/>
+      <RecoilRootWrapper>
+          <FramerSharedLayoutWrapper>{children}</FramerSharedLayoutWrapper>
+       </RecoilRootWrapper>
+      </body>
     </html>
   )
 }
