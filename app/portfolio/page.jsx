@@ -33,6 +33,8 @@ export default function Page() {
 			}
 
 			scroll.update();
+
+			console.log('loaded gallery #' + gallery)
 		}
 
 		if(typeof window !== 'undefined') {
@@ -72,7 +74,7 @@ export default function Page() {
 						src={`/assets/img/${gallery}/0.jpg`} alt={''} className={'w-[65vw] md:w-[50vw] lg:w-[30vw] h-[65vh] sm:h-[75vw] md:h-[110vw] lg:h-[65vw] xl:h-[40vw]  mx-auto mt-[25%] md:mt-[15%] lg:mt-[8%] 2xl:mt-0 2xl:py-10 object-cover'}
 						data-scroll data-scroll-speed={'1'} />
 					<div className={'absolute w-fit h-10 right-[14vw] bottom-[32vh] xl:right-[19vw] 2xl:right-[22vw] text-right text-sm 2xl:text-xl'}>
-						<div data-scroll data-scroll-speed={'4'}> {CAPTIONS[gallery].title} </div>
+						<div data-scroll data-scroll-speed={'4'}> {gallery} </div>
 						<div data-scroll data-scroll-speed={'4'} className={'w-[55vw] sm:w-[15vw] h-fit flex flex-wrap whitespace-normal py-4 text-current/60'}>
 							{CAPTIONS[gallery].desc}
 						</div>

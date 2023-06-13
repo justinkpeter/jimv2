@@ -1,3 +1,5 @@
+const imagesLoaded = require('imagesloaded');
+
 // Map number x from range [a, b] to [c, d]
 const map = (x, a, b, c, d) => (x - a) * (d - c) / (b - a) + c;
 
@@ -29,11 +31,30 @@ const distance = (x1,y1,x2,y2) => {
 // Generate a random float.
 const getRandomFloat = (min, max) => (Math.random() * (max - min) + min).toFixed(2);
 
+const preloadImages = (selector = 'img') => {
+    return new Promise((resolve) => {
+        imagesLoaded(document.querySelectorAll(selector), resolve);
+    });
+};
+
+// Preload images
+const preloadFonts = (id) => {
+    return new Promise((resolve) => {
+        WebFont.load({
+            typekit: {
+                id: id
+            },
+            active: resolve
+        });
+    });
+};
+
 export {
     map,
     lerp,
     calcWinsize,
     getMousePos,
     distance,
-    getRandomFloat
+    preloadFonts,
+    preloadImages,
 };
