@@ -34,6 +34,10 @@ export default function Page() {
 
 			scroll.update();
 		}
+
+		if(typeof window !== 'undefined') {
+			console.log('loading gallery #', gallery)
+		}
 	}, []);
 
 	const options = {

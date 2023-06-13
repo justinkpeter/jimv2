@@ -52,6 +52,9 @@ export const ImageCarousel = () => {
 		//update selected gallery
 		setGallery(imageId)
 		setCarouselIndex(imageId)
+		if(typeof window !== 'undefined') {
+			console.log('setting image to #', imageId)
+		}
 
 		let changeDirection
 		if (imageId > activeImageIndex) {
